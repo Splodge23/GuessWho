@@ -1,0 +1,610 @@
+<HTML>
+    <head>
+        <title> Guess Who </title>
+    </head>
+    <body>
+        <div id=myPC>...</div>
+        <canvas id=myCanvas width=700px height=470px style="background-color: #ffc61a"> </canvas>
+        <br>
+        <select id="myQuestions">
+        <option value="1">Are you a girl?</option>
+        <option value="2">Are you a boy?</option>
+        <option value="3">Are you wearing a hat?</option>
+        <option value="4">Is your hair black?</option>
+        <option value="5">Is your hair brown?</option>
+        <option value="6">Is your hair ginger?</option>
+        <option value="7">Is your hair blond?</option>
+        <option value="8">Is your hair grey?</option>
+        <option value="9">Are you bald?</option>
+        <option value="10">Are you wearing glasses?</option>
+        <option value="11">Are you wearing earings?</option>
+        <option value="12">Are your eyes brown?</option>
+        <option value="13">Are your eyes blue?</option>
+        <option value="14">Are you blushing?</option>
+        <option value="15">Do you have a moustache?</option>
+        <option value="16">Do you have a beard?</option>
+        </select><button id=myAsk onclick="Ask_Button()">Ask</button>
+        <br>
+        <input id=myAnswer type=text>
+        <script>
+        var ctx = myCanvas.getContext("2d");
+        var WhosTurn = 0;
+        var PlayerLooks = "0";
+        var YesOrNo = "Blank";
+        var PCsNext = 1;
+        var Player = Math.floor((Math.random() * 24) + 1);
+        var PC = Math.floor((Math.random() * 24) + 1);                      //sets variables
+        var StageImg = new Image();
+        StageImg.src = "stage.jpg";                                         //sets Stage
+        alert("There are 24 people in Guess Who. You and the computer are allocated one each.\nBoth you and the computer take it in turns to ask questions.\nAsk different questions to eliminate people and narrow down your options.\nClick the blue square when you are ready to submit your answer.\nIf you’re wrong keep trying. The first to answer correctly wins!");                                                 
+                    //alert for Instructions
+        while (Player==PC) {
+            PC = Math.floor((Math.random() * 24) + 1) }                     //Makes sure player and pc are different
+        document.getElementById("myAnswer").style.display = "none";
+        ctx.fillStyle="Blue";
+        ctx.fillRect(610,15,75,50);
+        ctx.drawImage(StageImg, 0, 0);                                      //draws Stage
+        ctx.fillStyle="#ffc61a"
+        function fill_1(){ctx.fillRect(0,0,75,120)}
+        function fill_2(){ctx.fillRect(75,0,75,125)}
+        function fill_3(){ctx.fillRect(150,0,75,125)}
+        function fill_4(){ctx.fillRect(225,0,75,125)}
+        function fill_5(){ctx.fillRect(300,0,75,125)}
+        function fill_6(){ctx.fillRect(375,0,75,125)}
+        function fill_7(){ctx.fillRect(449,0,75,125)}
+        function fill_8(){ctx.fillRect(525,0,75,125)}
+        function fill_9(){ctx.fillRect(0,123,75,125)}
+        function fill_10(){ctx.fillRect(75,123,75,125)}
+        function fill_11(){ctx.fillRect(150,123,75,125)}
+        function fill_12(){ctx.fillRect(225,123,75,125)}
+        function fill_13(){ctx.fillRect(300,123,75,125)}
+        function fill_14(){ctx.fillRect(375,123,75,125)}
+        function fill_15(){ctx.fillRect(449,123,75,125)}
+        function fill_16(){ctx.fillRect(525,123,75,125)}
+        function fill_17(){ctx.fillRect(0,250,75,125)}
+        function fill_18(){ctx.fillRect(75,250,75,125)}
+        function fill_19(){ctx.fillRect(150,250,75,125)}
+        function fill_20(){ctx.fillRect(225,250,75,125)}
+        function fill_21(){ctx.fillRect(300,250,75,125)}
+        function fill_22(){ctx.fillRect(375,250,75,125)}
+        function fill_23(){ctx.fillRect(449,250,75,125)}
+        function fill_24(){ctx.fillRect(525,250,75,125)}                    //Fill functions (the yellow box sprite)
+        if(Player==1){ctx.drawImage(StageImg,0,0, 69, 117, 615, 340, 69, 117);
+            fill_1() }
+        else if(Player==2){ctx.drawImage(StageImg,76,0, 69, 117, 615, 340, 69, 117);
+            fill_2() }
+        else if(Player==3){ctx.drawImage(StageImg,151,0, 69, 117, 615, 340, 69, 117);
+            fill_3() }
+        else if(Player==4){ctx.drawImage(StageImg,226,0, 69, 117, 615, 340, 69, 117);
+            fill_4() }
+        else if(Player==5){ctx.drawImage(StageImg,301,0, 69, 117, 615, 340, 69, 117);
+            fill_5() }
+        else if(Player==6){ctx.drawImage(StageImg,376,0, 69, 117, 615, 340, 69, 117);
+            fill_6() }
+        else if(Player==7){ctx.drawImage(StageImg,450,0, 69, 117, 615, 340, 69, 117);
+            fill_7() }
+        else if(Player==8){ctx.drawImage(StageImg,526,0, 69, 117, 615, 340, 69, 117);
+            fill_8() }
+        else if(Player==9){ctx.drawImage(StageImg,0,125, 69, 117, 615, 340, 69, 117);
+            fill_9() }
+        else if(Player==10){ctx.drawImage(StageImg,76,125, 69, 117, 615, 340, 69, 117);
+            fill_10() }
+        else if(Player==11){ctx.drawImage(StageImg,151,125, 69, 117, 615, 340, 69, 117);
+            fill_11() }
+        else if(Player==12){ctx.drawImage(StageImg,226,125, 69, 117, 615, 340, 69, 117);
+            fill_12() }
+        else if(Player==13){ctx.drawImage(StageImg,301,125, 69, 117, 615, 340, 69, 117);
+            fill_13() }
+        else if(Player==14){ctx.drawImage(StageImg,376,125, 69, 117, 615, 340, 69, 117);
+            fill_14() }
+        else if(Player==15){ctx.drawImage(StageImg,450,125, 69, 117, 615, 340, 69, 117);
+            fill_15() }
+        else if(Player==16){ctx.drawImage(StageImg,526,125, 69, 117, 615, 340, 69, 117);
+            fill_16() }
+        else if(Player==17){ctx.drawImage(StageImg,0,253, 69, 117, 615, 340, 69, 117);
+            fill_17() }
+        else if(Player==18){ctx.drawImage(StageImg,76,253, 69, 117, 615, 340, 69, 117);
+            fill_18() }
+        else if(Player==19){ctx.drawImage(StageImg,151,253, 69, 117, 615, 340, 69, 117);
+            fill_19() }
+        else if(Player==20){ctx.drawImage(StageImg,226,253, 69, 117, 615, 340, 69, 117);
+            fill_20() }
+        else if(Player==21){ctx.drawImage(StageImg,301,253, 69, 117, 615, 340, 69, 117);
+            fill_21() }
+        else if(Player==22){ctx.drawImage(StageImg,376,253, 69, 117, 615, 340, 69, 117);
+            fill_22() }
+        else if(Player==23){ctx.drawImage(StageImg,450,253, 69, 117, 615, 340, 69, 117);
+            fill_23() }
+        else if(Player==24){ctx.drawImage(StageImg,526,253, 69, 117, 615, 340, 69, 117);
+            fill_24() }                                                                         //Draws a picture of your player & removes from board    
+        if(Player==3||Player==4||Player==8||Player==15||Player==23){PlayerLooks+="girl "}
+                else {PlayerLooks+="boy "}
+        if(Player==5||Player==8||Player==10||Player==12||Player==15){PlayerLooks+="hat "}
+        if(Player==1||Player==4||Player==16||Player==19||Player==24){PlayerLooks+="black hair "}
+                else if(Player==5||Player==15||Player==20||Player==21){PlayerLooks+="brown hair "}
+                else if(Player==2||Player==6||Player==8||Player==11||Player==13){PlayerLooks+="ginger hair "}
+                else if(Player==3||Player==7||Player==9||Player==10||Player==14){PlayerLooks+="blond hair "}
+                else {PlayerLooks+="grey hair "}
+        if(Player==6||Player==13||Player==20||Player==22||Player==24){PlayerLooks+="bald "}
+        if(Player==8||Player==14||Player==17||Player==22||Player==24){PlayerLooks+="glasses "}
+        if(Player==4||Player==15){PlayerLooks+="earings "}
+        if(Player==2||Player==3||Player==18||Player==21||Player==24){PlayerLooks+="blue eyes "}
+                else {PlayerLooks+="brown eyes "}
+        if(Player==3||Player==6||Player==19||Player==21||Player==23){PlayerLooks+="blushing "}
+        if(Player==1||Player==2||Player==7||Player==16||Player==20){PlayerLooks+="moustache "}
+        if(Player==6||Player==9||Player==19||Player==20){PlayerLooks+="beard "}                //Sets the Player Looks variable
+        function girl(){
+            fill_3();  fill_4();  fill_8();  fill_15();  fill_23() }
+        function boy(){
+            fill_1();fill_2();fill_5();fill_6();fill_7();
+            fill_9();fill_10();fill_11();fill_12();fill_13();fill_14();fill_16();
+            fill_17();fill_18();fill_19();fill_20();fill_21();fill_22();fill_24()}
+        function hat(){
+            fill_5();  fill_8();  fill_10();  fill_12();  fill_15() }
+        function not_hat(){
+            fill_1();fill_2();fill_3();fill_4();fill_6();fill_7();
+            fill_9();fill_11();fill_13();fill_14();fill_16();
+            fill_17();fill_18();fill_19();fill_20();fill_21();fill_22();fill_23();fill_24()}
+        function black_hair(){
+            fill_1();  fill_4();  fill_16();  fill_19();  fill_24() }
+        function brown_hair(){
+            fill_5();  fill_15();  fill_20();  fill_21() }
+        function ginger_hair(){
+            fill_2();  fill_6();  fill_8();  fill_11();  fill_13() }
+        function blond_hair(){
+            fill_3();  fill_7();  fill_9();  fill_10();  fill_14() }
+        function grey_hair(){
+            fill_12();  fill_17();  fill_18();  fill_22();  fill_23() }
+        function bald(){
+            fill_6();  fill_13();  fill_20();  fill_22();  fill_24() }
+        function not_bald(){
+            fill_1();fill_2();fill_3();fill_4();fill_5();fill_7();fill_8();
+            fill_9();fill_10();fill_11();fill_12();fill_14();fill_15();fill_16();
+            fill_17();fill_18();fill_19();fill_21();fill_23();}
+        function glasses(){
+            fill_8();  fill_14();  fill_17();  fill_22();  fill_24() }
+        function not_glasses(){
+            fill_1();fill_2();fill_3();fill_4();fill_5();fill_6();fill_7();
+            fill_9();fill_10();fill_11();fill_12();fill_13();fill_15();fill_16();
+            fill_18();fill_19();fill_20();fill_21();fill_23()}
+        function earings(){
+            fill_4();  fill_15() }
+        function not_earings(){
+            fill_1();fill_2();fill_3();fill_5();fill_6();fill_7();fill_8();
+            fill_9();fill_10();fill_11();fill_12();fill_13();fill_14();fill_16();
+            fill_17();fill_18();fill_19();fill_20();fill_21();fill_22();fill_23();fill_24()}
+        function blue_eyes(){
+            fill_2();  fill_3();  fill_18();  fill_21();  fill_24() }
+        function brown_eyes(){
+            fill_1();fill_4();fill_5();fill_6();fill_7();fill_8();
+            fill_9();fill_10();fill_11();fill_12();fill_13();fill_14();fill_15();fill_16();
+            fill_17();fill_19();fill_20();fill_22();fill_23()}
+        function blushing(){
+            fill_3();  fill_6();  fill_19();  fill_21();  fill_23() }
+        function not_blushing(){
+            fill_1();fill_2();fill_4();fill_5();fill_7();fill_8();
+            fill_9();fill_10();fill_11();fill_12();fill_13();fill_14();fill_15();fill_16();
+            fill_17();fill_18();fill_20();fill_22();fill_24()}
+        function moustache(){
+            fill_1();  fill_2();  fill_7();  fill_16();  fill_20() }
+        function not_moustache(){
+            fill_3();fill_4();fill_5();fill_6();fill_8();
+            fill_9();fill_10();fill_11();fill_12();fill_13();fill_14();fill_15();
+            fill_17();fill_18();fill_19();fill_21();fill_22();fill_23();fill_24()}
+        function beard(){
+            fill_6();  fill_9();  fill_19();  fill_20() }
+        function not_beard(){
+            fill_1();fill_2();fill_3();fill_4();fill_5();fill_7();fill_8();
+            fill_10();fill_11();fill_12();fill_13();fill_14();fill_15();fill_16();
+            fill_17();fill_18();fill_21();fill_22();fill_23();fill_24()}                  //ask button fill functions
+        function Computers_Turn(Questions){
+            ctx.fillStyle="Black";
+            ctx.fillRect(615,70,5,10);
+            ctx.fillRect(620,80,5,10);
+            ctx.fillRect(625,90,5,20);
+            ctx.fillRect(630,80,5,10);
+            ctx.fillRect(635,70,5,10);
+            ctx.fillRect(650,70,5,40);
+            ctx.fillRect(655,70,5,10);
+            ctx.fillRect(660,80,5,10);
+            ctx.fillRect(665,90,5,10);
+            ctx.fillRect(670,100,5,10);
+            ctx.fillRect(675,70,5,40);
+            document.getElementById("myPC").innerHTML=Questions;
+        }
+        function PCs_Turn(){
+            if(PCsNext==45){
+                Computers_Turn("Are you wearing glasses?") }
+            if(PCsNext==43){
+                Computers_Turn("Do you have a moustache?") }
+            if(PCsNext==40){
+                Computers_Turn("Are you a girl?") }
+            if(PCsNext==39){
+                Computers_Turn("Are you blushing?") }
+            if(PCsNext==36){
+                Computers_Turn("Are you bald?") }
+            if(PCsNext==33){
+                Computers_Turn("Are you wearing earings?") }
+            if(PCsNext==32){
+                Computers_Turn("Are you a girl?") }
+            if(PCsNext==28){
+                Computers_Turn("Is your hair ginger?") }
+            if(PCsNext==27){
+                Computers_Turn("Are you blushing?") }
+            if(PCsNext==26){
+                Computers_Turn("Do you have a beard?") }
+            if(PCsNext==23){
+                Computers_Turn("Is your hair grey?") }
+            if(PCsNext==21){
+                Computers_Turn("Are you bald?") }
+            if(PCsNext==20){
+                Computers_Turn("Are you wearing glasses?") }
+            if(PCsNext==17){
+                Computers_Turn("Are you bald?") }
+            if(PCsNext==14){
+                Computers_Turn("Do you have a big nose?") }
+            if(PCsNext==13){
+                Computers_Turn("Is your hair black?") }
+            if(PCsNext==12){
+                Computers_Turn("Do you have a moustache?") }
+            if(PCsNext==9){
+                Computers_Turn("Are you wearing glasses?") }
+            if(PCsNext==6){
+                Computers_Turn("Is your hair blond?") }
+            if(PCsNext==4){
+                Computers_Turn("Is your hair grey?") }
+            if(PCsNext==3){
+                Computers_Turn("Are you a boy?") }
+            if(PCsNext==2){
+                Computers_Turn("Are you wearing a hat?") }
+            if(PCsNext==1){
+                Computers_Turn("Do you have brown eyes?") }
+        }
+        function Computers_Parts(Answer,Yes,No){
+            if(YesOrNo=="Yes"&&PlayerLooks.includes(Answer)==true){
+                WhosTurn=0;
+                PCsNext=Yes;
+                ctx.fillStyle="#ffc61a";
+                ctx.fillRect(610,65,75,50);
+                document.getElementById("myPC").innerHTML="..."
+            }
+            else if(YesOrNo=="No"&&PlayerLooks.includes(Answer)==false){
+                WhosTurn=0;
+                PCsNext=No;
+                ctx.fillStyle="#ffc61a";
+                ctx.fillRect(610,65,75,50);
+                document.getElementById("myPC").innerHTML="..."
+            }
+            else{
+                document.getElementById("myPC").innerHTML="I don't cheat!";
+                setTimeout(PCs_Turn,1000);
+            }
+        }
+        function PCs_Parts(){
+            if(PCsNext==45){
+                Computers_Parts("glasses",46,47)}
+            if(PCsNext==43){
+                Computers_Parts("moustache",44,45)}
+            if(PCsNext==40){
+                Computers_Parts("girl",41,42)}
+            if(PCsNext==39){
+                Computers_Parts("blushing",40,43)}
+            if(PCsNext==36){
+                Computers_Parts("bald",37,38)}
+            if(PCsNext==33){
+                Computers_Parts("earings",34,35)}
+            if(PCsNext==32){
+                Computers_Parts("girl",33,36)}
+            if(PCsNext==28){
+                Computers_Parts("ginger hair",29,30)}
+            if(PCsNext==27){
+                Computers_Parts("blushing",28,31)}
+            if(PCsNext==26){
+                Computers_Parts("beard",27,32)}
+            if(PCsNext==23){
+                Computers_Parts("grey hair",24,25)}
+            if(PCsNext==21){
+                Computers_Parts("bald",22,23)}
+            if(PCsNext==20){
+                Computers_Parts("glasses",21,26)}
+            if(PCsNext==17){
+                Computers_Parts("bald",18,19)}
+            if(PCsNext==14){
+                if(YesOrNo=="Yes"&&Player==16){
+                    WhosTurn=0;
+                    PCsNext=15;
+                    ctx.fillStyle="Blue";
+                    ctx.fillRect(610,15,75,50);
+                    ctx.fillStyle="#ffc61a"
+                }
+                else if(YesOrNo=="No"&&Player==1){
+                    WhosTurn=0;
+                    PCsNext=16;
+                    ctx.fillStyle="Blue";
+                    ctx.fillRect(610,15,75,50);
+                    ctx.fillStyle="#ffc61a"
+                }
+                else{
+                    document.getElementById("myPC").innerHTML="I don't play with cheats!";
+                    stop()
+                } }
+            if(PCsNext==13){
+                Computers_Parts("black hair",14,17)}
+            if(PCsNext==12){
+                Computers_Parts("moustache",13,20)}
+            if(PCsNext==9){
+                Computers_Parts("glasses",10,11)}
+            if(PCsNext==6){
+                Computers_Parts("blond hair",7,8)}
+            if(PCsNext==4){
+                Computers_Parts("grey hair",5,6)}
+            if(PCsNext==3){
+                Computers_Parts("boy",4,9)}
+            if(PCsNext==2){
+                Computers_Parts("hat",3,12)}
+            if(PCsNext==1){
+                Computers_Parts("brown eyes",2,39)}
+        }
+        function PCs_Checks(){
+            if(PCsNext==5){
+                document.getElementById("myPC").innerHTML="Your George";
+                stop() }
+            if(PCsNext==7){
+                document.getElementById("myPC").innerHTML="Your Eric";
+                stop() }
+            if(PCsNext==8){
+                document.getElementById("myPC").innerHTML="Your Bernard";
+                stop() }
+            if(PCsNext==10){
+                document.getElementById("myPC").innerHTML="Your Claire";
+                stop() }
+            if(PCsNext==11){
+                document.getElementById("myPC").innerHTML="Your Maria";
+                stop() }
+            if(PCsNext==15){
+                document.getElementById("myPC").innerHTML="Your Max";
+                stop() }
+            if(PCsNext==16){
+                document.getElementById("myPC").innerHTML="Your Alex";
+                stop() }
+            if(PCsNext==18){
+                document.getElementById("myPC").innerHTML="Your Richard";
+                stop() }
+            if(PCsNext==19){
+                document.getElementById("myPC").innerHTML="Your Charles";
+                stop() }
+            if(PCsNext==22){
+                document.getElementById("myPC").innerHTML="Your Sam";
+                stop() }
+            if(PCsNext==24){
+                document.getElementById("myPC").innerHTML="Your Paul";
+                stop() }
+            if(PCsNext==25){
+                document.getElementById("myPC").innerHTML="Your Joe";
+                stop() }
+            if(PCsNext==29){
+                document.getElementById("myPC").innerHTML="Your Bill";
+                stop() }
+            if(PCsNext==30){
+                document.getElementById("myPC").innerHTML="Your Philip";
+                stop() }
+            if(PCsNext==31){
+                document.getElementById("myPC").innerHTML="Your David";
+                stop() }
+            if(PCsNext==34){
+                document.getElementById("myPC").innerHTML="Your Anne";
+                stop() }
+            if(PCsNext==35){
+                document.getElementById("myPC").innerHTML="Your Susan";
+                stop() }
+            if(PCsNext==37){
+                document.getElementById("myPC").innerHTML="Your Herman";
+                stop() }
+            if(PCsNext==38){
+                document.getElementById("myPC").innerHTML="Your Frans";
+                stop() }
+            if(PCsNext==41){
+                document.getElementById("myPC").innerHTML="Your Anita";
+                stop() }
+            if(PCsNext==42){
+                document.getElementById("myPC").innerHTML="Your Robert";
+                stop() }
+            if(PCsNext==44){
+                document.getElementById("myPC").innerHTML="Your Alfred";
+                stop() }
+            if(PCsNext==46){
+                document.getElementById("myPC").innerHTML="Your Tom";
+                stop() }
+            if(PCsNext==47){
+                document.getElementById("myPC").innerHTML="Your Peter";
+                stop() }
+        }
+        function Who_Am_I(Name,Number){
+            if(document.getElementById("myAnswer").value==Name){
+                if(PC==Number){
+                    document.getElementById("myPC").innerHTML = "Correct";
+                    stop()
+                }
+                else{
+                    document.getElementById("myPC").innerHTML = "No keep trying";
+                    document.getElementById("myAnswer").value ="";
+                    document.getElementById("myAnswer").style.display="none";
+                    document.getElementById("myQuestions").style.display="block";
+                    WhosTurn=1;
+                    setTimeout(PCs_Turn,2000);
+                }
+            }
+        }
+        function Yes_Button(){
+            Who_Am_I("Alex",1);
+            Who_Am_I("Alfred",2);
+            Who_Am_I("Anita",3);
+            Who_Am_I("Anne",4);
+            Who_Am_I("Bernard",5);
+            Who_Am_I("Bill",6);
+            Who_Am_I("Charles",7);
+            Who_Am_I("Claire",8);
+            Who_Am_I("David",9);
+            Who_Am_I("Eric",10);
+            Who_Am_I("Frans",11);
+            Who_Am_I("George",12);
+            Who_Am_I("Herman",13);
+            Who_Am_I("Joe",14);
+            Who_Am_I("Maria",15);
+            Who_Am_I("Max",16);
+            Who_Am_I("Paul",17);
+            Who_Am_I("Peter",18);
+            Who_Am_I("Philip",19);
+            Who_Am_I("Richard",20);
+            Who_Am_I("Robert",21);
+            Who_Am_I("Sam",22);
+            Who_Am_I("Susan",23);
+            Who_Am_I("Tom",24)
+        }
+        function Ask_Button(){
+            if(myAnswer.style.display=="block"){
+                Yes_Button()
+            }
+            else{
+                if(WhosTurn==0){
+                    if(myQuestions.value=="1"){
+                        if(PC==3||PC==4||PC==8||PC==15||PC==23){
+                            document.getElementById("myPC").innerHTML = "Yes";
+                            boy()}
+                        else{document.getElementById("myPC").innerHTML = "No";
+                            girl()}
+                    }
+                    if(myQuestions.value=="2"){
+                        if(PC==3||PC==4||PC==8||PC==15||PC==23){
+                            document.getElementById("myPC").innerHTML = "No";
+                            boy()}
+                        else{document.getElementById("myPC").innerHTML = "Yes";
+                            girl()}
+                    }
+                    if(myQuestions.value=="3"){
+                        if(PC==5||PC==8||PC==10||PC==12||PC==15){
+                            document.getElementById("myPC").innerHTML = "Yes";
+                            not_hat()}
+                        else{document.getElementById("myPC").innerHTML = "No";
+                            hat()}
+                    }if(myQuestions.value=="4"){
+                        if(PC==1||PC==4||PC==16||PC==19||PC==24){
+                            document.getElementById("myPC").innerHTML = "Yes";
+                            brown_hair(); ginger_hair(); blond_hair(); grey_hair()}
+                        else{document.getElementById("myPC").innerHTML = "No";
+                            black_hair()}
+                    }
+                    if(myQuestions.value=="5"){
+                        if(PC==5||PC==15||PC==20||PC==21){
+                            document.getElementById("myPC").innerHTML = "Yes";
+                            black_hair(); ginger_hair(); blond_hair(); grey_hair()}
+                        else{document.getElementById("myPC").innerHTML = "No";
+                            brown_hair()}
+                    }
+                    if(myQuestions.value=="6"){
+                        if(PC==2||PC==6||PC==8||PC==11||PC==13){
+                            document.getElementById("myPC").innerHTML = "Yes";
+                            black_hair(); brown_hair(); blond_hair(); grey_hair()}
+                        else{document.getElementById("myPC").innerHTML = "No";
+                            ginger_hair()}
+                    }
+                    if(myQuestions.value=="7"){
+                        if(PC==3||PC==7||PC==9||PC==10||PC==14){
+                            document.getElementById("myPC").innerHTML = "Yes";
+                            black_hair(); brown_hair(); ginger_hair(); grey_hair()}
+                        else{document.getElementById("myPC").innerHTML = "No";
+                            blond_hair()}
+                    }
+                    if(myQuestions.value=="8"){
+                        if(PC==12||PC==17||PC==18||PC==22||PC==23){
+                            document.getElementById("myPC").innerHTML = "Yes";
+                            black_hair(); brown_hair(); ginger_hair(); blond_hair()}
+                        else{document.getElementById("myPC").innerHTML = "No";
+                            grey_hair()}
+                    }
+                    if(myQuestions.value=="9"){
+                        if(PC==6||PC==13||PC==20||PC==22||PC==24){
+                            document.getElementById("myPC").innerHTML = "Yes";
+                            not_bald()}
+                        else{document.getElementById("myPC").innerHTML = "No";
+                            bald()}
+                    }
+                    if(myQuestions.value=="10"){
+                        if(PC==8||PC==14||PC==17||PC==22||PC==24){
+                            document.getElementById("myPC").innerHTML = "Yes";
+                            not_glasses()}
+                        else{document.getElementById("myPC").innerHTML = "No";
+                            glasses()}
+                    }
+                    if(myQuestions.value=="11"){
+                        if(PC==4||PC==15){
+                            document.getElementById("myPC").innerHTML = "Yes";
+                            not_earings()}
+                        else{document.getElementById("myPC").innerHTML = "No";
+                            earings()}
+                    }
+                    if(myQuestions.value=="12"){
+                        if(PC==2||PC==3||PC==18||PC==21||PC==24){
+                            document.getElementById("myPC").innerHTML = "No";
+                            brown_eyes()}
+                        else{document.getElementById("myPC").innerHTML = "Yes";
+                            blue_eyes()}
+                    }
+                    if(myQuestions.value=="13"){
+                        if(PC==2||PC==3||PC==18||PC==21||PC==24){
+                            document.getElementById("myPC").innerHTML = "Yes";
+                            brown_eyes()}
+                        else{document.getElementById("myPC").innerHTML = "No";
+                            blue_eyes()}
+                    }
+                    if(myQuestions.value=="14"){
+                        if(PC==3||PC==6||PC==19||PC==21||PC==23){
+                            document.getElementById("myPC").innerHTML = "Yes";
+                            not_blushing()}
+                        else{document.getElementById("myPC").innerHTML = "No";
+                            blushing()}
+                    }
+                    if(myQuestions.value=="15"){
+                        if(PC==1||PC==2||PC==7||PC==16||PC==20){
+                            document.getElementById("myPC").innerHTML = "Yes";
+                            not_moustache()}
+                        else{document.getElementById("myPC").innerHTML = "No";
+                            moustache()}
+                    }
+                    if(myQuestions.value=="16"){
+                        if(PC==6||PC==9||PC==19||PC==20){
+                            document.getElementById("myPC").innerHTML = "Yes";
+                            not_beard()}
+                        else{document.getElementById("myPC").innerHTML = "No";
+                            beard()}
+                    }
+                    WhosTurn=1;
+                    setTimeout(PCs_Turn,2000)
+        }   }   }
+        function MyHandler(MyEvent){
+            if(MyEvent.clientX>620&&MyEvent.clientY<90){
+                if(YesOrNo!=="Jump"){
+                document.getElementById("myPC").innerHTML = "Who am I?";
+                document.getElementById("myAnswer").style.display = "block";
+                document.getElementById("myQuestions").style.display = "none";
+                YesOrNo="Jump";
+            }   }
+            else{
+                if(MyEvent.clientX>620&&MyEvent.clientY<140){
+                      if(MyEvent.clientX<655){
+                        YesOrNo="Yes";
+                        PCs_Parts(); 
+                    }
+                    else{
+                        YesOrNo="No";
+                        PCs_Parts();
+                    }
+                }
+            }
+        }
+        setInterval(PCs_Checks, 500);
+        addEventListener("mousedown", MyHandler);                           //Listens for Mouse
+        addEventListener("touchstart", MyHandler);                          //Listens for Mouse
+        </script>
+    </body>
+</html>    
